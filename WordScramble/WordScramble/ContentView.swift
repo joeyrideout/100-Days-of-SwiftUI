@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -36,6 +37,19 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(rootWord)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Text("Score: \(score)")
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.black)
+                        Spacer()
+                        Button("New Game") {
+                            startGame()
+                        }
+                    }
+                }
+            }
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
             .alert(errorTitle, isPresented: $showingError) {
@@ -49,6 +63,16 @@ struct ContentView: View {
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         guard answer.count > 0 else { return }
+        
+        guard isntIdentical(word: answer) else {
+            wordError(title: "Word is the word", message: "Be more original")
+            return
+        }
+        
+        guard isLongEnough(word: answer) else {
+            wordError(title: "Word too short", message: "Words must be at least 4 letters long")
+            return
+        }
         
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
@@ -65,6 +89,7 @@ struct ContentView: View {
         
         withAnimation {
             usedWords.insert(answer, at: 0)
+            score += answer.count
         }
         newWord = ""
     }
@@ -74,10 +99,21 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: fileUrl) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                usedWords = []
+                newWord = ""
+                score = 0
                 return
             }
         }
         fatalError("Could not load start.txt from bundle.")
+    }
+    
+    func isntIdentical(word: String) -> Bool {
+        word != rootWord
+    }
+    
+    func isLongEnough(word: String) -> Bool {
+        word.count > 3
     }
     
     func isOriginal(word: String) -> Bool {
