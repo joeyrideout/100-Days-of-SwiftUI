@@ -28,6 +28,14 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var showingEnd = false
     @State private var scoreTitle = ""
+    
+    @State private var flagToAnimate = -1
+    @State private var flagRotationValues = [0.0, 0.0, 0.0]
+    @State private var flagOpacityValues = [1.0, 1.0, 1.0]
+    @State private var flagScaleValues = [1.0, 1.0, 1.0]
+
+    
+    
     var endTitle = "Game Complete"
     
     var body: some View {
@@ -54,9 +62,25 @@ struct ContentView: View {
                     
                     ForEach(0..<3) { number in
                         Button {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                flagToAnimate = number
+                                flagRotationValues[number] = 360.0
+                                flagScaleValues[number] = 1.1
+                                for (index, _) in flagOpacityValues.enumerated() {
+                                    if index != number {
+                                        flagOpacityValues[index] = 0.25
+                                        flagScaleValues[index] = 0.95
+                                    }
+                                }
+                            }
                             flagTapped(number)
                         } label: {
                             FlagImage(image: countries[number])
+                                
+//                            .scaleEffect(flagToAnimate == number ? 1.3 : 1.0)
+                            .opacity(flagOpacityValues[number])
+                            .rotation3DEffect(.degrees(flagRotationValues[number]), axis: (x: 0, y: 1, z: 0))
+                            .scaleEffect(flagScaleValues[number])
                         }
                     }
                 }
@@ -96,10 +120,12 @@ struct ContentView: View {
             scoreTitle = "Wrong, that was \(countries[number])"
             score -= 1
         }
-        if questionNumber < maxQuestions {
-            showingScore = true
-        } else {
-            showingEnd = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if questionNumber < maxQuestions {
+                showingScore = true
+            } else {
+                showingEnd = true
+            }
         }
     }
     
@@ -110,6 +136,10 @@ struct ContentView: View {
     }
     
     func askQuestion() {
+        flagToAnimate = -1
+        flagRotationValues = [0.0, 0.0, 0.0]
+        flagOpacityValues = [1.0, 1.0, 1.0]
+        flagScaleValues = [1.0, 1.0, 1.0]
         questionNumber += 1
         countries.shuffle()
         correctAnswer = Int.random(in: 0..<3)
