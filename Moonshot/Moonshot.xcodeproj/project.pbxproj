@@ -17,6 +17,11 @@
 		D4F151582A407D1600FDC017 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F151572A407D1600FDC017 /* Bundle-Decodable.swift */; };
 		D4F1515A2A407E9C00FDC017 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F151592A407E9C00FDC017 /* Mission.swift */; };
 		D4F1515C2A40850900FDC017 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F1515B2A40850900FDC017 /* Color-Theme.swift */; };
+		D4F1515E2A40AB9300FDC017 /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F1515D2A40AB9300FDC017 /* MissionView.swift */; };
+		D4F151602A40B2E500FDC017 /* AstronautView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F1515F2A40B2E500FDC017 /* AstronautView.swift */; };
+		D4F151622A40E5DD00FDC017 /* RectangleDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F151612A40E5DD00FDC017 /* RectangleDividerView.swift */; };
+		D4F151642A40E7A000FDC017 /* CapsuleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F151632A40E7A000FDC017 /* CapsuleImageView.swift */; };
+		D4F151662A411F9300FDC017 /* ForEachMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F151652A411F9300FDC017 /* ForEachMissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 		D4F151572A407D1600FDC017 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		D4F151592A407E9C00FDC017 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		D4F1515B2A40850900FDC017 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
+		D4F1515D2A40AB9300FDC017 /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
+		D4F1515F2A40B2E500FDC017 /* AstronautView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautView.swift; sourceTree = "<group>"; };
+		D4F151612A40E5DD00FDC017 /* RectangleDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleDividerView.swift; sourceTree = "<group>"; };
+		D4F151632A40E7A000FDC017 /* CapsuleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleImageView.swift; sourceTree = "<group>"; };
+		D4F151652A411F9300FDC017 /* ForEachMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachMissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,11 @@
 			children = (
 				D4F151432A3EA19E00FDC017 /* MoonshotApp.swift */,
 				D4F151452A3EA19E00FDC017 /* ContentView.swift */,
+				D4F151652A411F9300FDC017 /* ForEachMissionView.swift */,
+				D4F1515D2A40AB9300FDC017 /* MissionView.swift */,
+				D4F151632A40E7A000FDC017 /* CapsuleImageView.swift */,
+				D4F151612A40E5DD00FDC017 /* RectangleDividerView.swift */,
+				D4F1515F2A40B2E500FDC017 /* AstronautView.swift */,
 				D4F151592A407E9C00FDC017 /* Mission.swift */,
 				D4F151552A407CB600FDC017 /* Astronaut.swift */,
 				D4F151572A407D1600FDC017 /* Bundle-Decodable.swift */,
@@ -157,11 +172,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F1515E2A40AB9300FDC017 /* MissionView.swift in Sources */,
 				D4F151562A407CB600FDC017 /* Astronaut.swift in Sources */,
+				D4F151602A40B2E500FDC017 /* AstronautView.swift in Sources */,
 				D4F1515C2A40850900FDC017 /* Color-Theme.swift in Sources */,
 				D4F151462A3EA19E00FDC017 /* ContentView.swift in Sources */,
+				D4F151622A40E5DD00FDC017 /* RectangleDividerView.swift in Sources */,
 				D4F151442A3EA19E00FDC017 /* MoonshotApp.swift in Sources */,
+				D4F151662A411F9300FDC017 /* ForEachMissionView.swift in Sources */,
 				D4F1515A2A407E9C00FDC017 /* Mission.swift in Sources */,
+				D4F151642A40E7A000FDC017 /* CapsuleImageView.swift in Sources */,
 				D4F151582A407D1600FDC017 /* Bundle-Decodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

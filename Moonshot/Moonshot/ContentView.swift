@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var listViewEnabled = false
+    
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
     let missions: [Mission] = Bundle.main.decode("missions.json")
 
@@ -18,41 +20,23 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(missions) { mission in
-                        NavigationLink {
-                            Text("Detail view")
-                        } label: {
-                            VStack {
-                                Image(mission.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-                                
-                                VStack {
-                                    Text(mission.displayName)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(mission.formattedLaunchDate)
-                                        .font(.caption)
-                                        .foregroundColor(.white.opacity(0.5))
-                                }
-                                .padding(.vertical)
-                                .frame(maxWidth: .infinity)
-                                .background(.lightBackground)
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(RoundedRectangle(cornerRadius: 10)
-                                .stroke(.lightBackground))
-                        }
+                if listViewEnabled {
+                    ForEachMissionView(missions: missions, astronauts: astronauts, listViewEnabled: listViewEnabled)
+                } else {
+                    LazyVGrid(columns: columns) {
+                        ForEachMissionView(missions: missions, astronauts: astronauts, listViewEnabled: listViewEnabled)
                     }
+                    .padding([.horizontal, .bottom])
                 }
-                .padding([.horizontal, .bottom])
             }
             .navigationTitle("Moonshot")
             .background(.darkBackground)
             .preferredColorScheme(.dark)
+            .toolbar {
+                Button(listViewEnabled ? "Grid" : "List") {
+                    listViewEnabled.toggle()
+                }
+            }
         }
     }
 }
